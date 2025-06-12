@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluación Curricular Institucional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+
+<body>
+    <div class="main-container">
+        <div class="header">
+            <span class="header-icon">
+              <img src="/img/logo_ME_sinfondo.png" alt="logo_ME">
+            </span>
+            <span>
+                <div class="header-title">Evaluación Curricular Institucional</div>
+                <div class="header-desc">Sistema de Evaluación basado en la Propuesta del Ministerio de Educación</div>
+            </span>
+        </div>
+
+       <div class="tabs">
+            <button class="tab active" id="tab1" onclick="showTab(1)">Datos IE</button>
+            <button class="tab" id="tab2" onclick="showTab(2)" disabled>Datos Directivo</button>
+            <button class="tab" id="tab3" onclick="showTab(3)" disabled>Datos Docente</button>
+            <button class="tab" id="tab4" onclick="showTab(4)" disabled>Calificaciones</button>
+            <button class="tab" id="tab5" onclick="showTab(5)" disabled>Resultados</button>
+            <button class="tab" id="tab6" onclick="showTab(6)" disabled>Reporte</button>
+        </div>
+
+        <!-- Datos  IE -->
+        <div class="form-section" id="section1">
+            <div class="section-title">Información Institucional</div>
+            <form id="datosForm" autocomplete="off">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre de la Institución Educativa:</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amie">Código AMIE:</label>
+                        <input type="text" id="amie" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sostenimiento">Sostenimiento</label>
+                        <input type="text" id="sostenimiento">
+                    </div>
+                    <div class="form-group">
+                        <label for="regimen">Regimen Educativo:</label>
+                        <select id="regimen" required>
+                            <option value="">Seleccione...</option>
+                            <option>Regimen Costa</option>
+                            <option>Regimen Sierra</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="provincia">Provincia:</label>
+                        <select id="provincia" required>
+                            <option value="">Seleccione...</option>
+                            <option>Azuay</option>
+                            <option>Bolivar</option>
+                            <option>Cañar</option>
+                            <option>Carchi</option>
+                            <option>Chimborazo</option>
+                            <option>Cotopaxi</option>
+                            <option>El Oro</option>
+                            <option>Esmeraldas</option>
+                            <option>Galápagos</option>
+                            <option>Guayas</option>
+                            <option>Imbabura</option>
+                            <option>Loja</option>
+                            <option>Los Ríos</option>
+                            <option>Manabí</option>
+                            <option>Morona Santiago</option>
+                            <option>Napo</option>
+                            <option>Sucumbíos</option>
+                            <option>Pastaza</option>
+                            <option>Pichincha</option>
+                            <option>Santa Elena</option>
+                            <option>Santo Domingo</option>
+                            <option>Orellana </option>
+                            <option>Tungurahua</option>
+                            <option>Zamora Chimchipe</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="canton">Cantón</label>
+                        <input type="canton" id="canton">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="parroquia">Parroquia:</label>
+                        <input type="text" id="parroquia">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Direccion</label>
+                        <input type="text" id="direccion">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="seccion">Seccion:</label>
+                        <select id="seccion" required>
+                            <option value="">Seleccione...</option>
+                            <option>Matutina</option>
+                            <option>Vespertina</option>
+                            <option>Nocturna</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nivel">Nivel Educativo:</label>
+                        <select id="nivel" required>
+                            <option value="">Seleccione...</option>
+                            <option>Inicial</option>
+                            <option>Básica Elemental</option>
+                            <option>Básica Media</option>
+                            <option>Básica Superior</option>
+                            <option>Bachillerato</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="button-row">
+                    <button type="button" class="btn-primary" onclick="continuarDatosD()">CONTINUAR CON LA
+                        EVALUACIÓN &rarr;</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Datos Directivo -->
+        <div class="form-section" id="section2" style="display:none;">
+            <div class="section-title">Informacion de Directivo</div>
+            <form id="evalForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombred">Nombres y Apellidos del Directivo:</label>
+                        <input type="text" id="nombred" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cargo">Cargo:</label>
+                        <input type="text" id="cargo" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tituloP">Titulo Profesional</label>
+                        <input type="text" id="tituloP">
+                    </div>
+                    <div class="form-group">
+                        <label for="exp">Años de Experiencia:</label>
+                        <select id="exp" required>
+                            <option value="">Seleccione...</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>25</option>
+                            <option>30</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="celular">Celular</label>
+                        <input type="number" id="celular">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" onblur="validarEmail()">
+                    </div>
+                </div>
+                <div class="button-row">
+                    <button type="button" class="btn-primary" onclick="continuarDdocente()">CONTINUAR LA
+                        EVALUACION</button>
+                </div>
+            </form>
+        </div>
+        <!-- Datos Docente -->
+        <div class="form-section" id="section3" style="display:none;">
+            <div class="section-title">Informacion del Docente</div>
+            <form id="evalForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombredoc">Nombres y Apellidos del Docente:</label>
+                        <input type="text" id="nombredoc" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="asig">Asignatura que imparte:</label>
+                        <input type="text" id="asig" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="aexp">Años de Experiencia</label>
+                        <input type="number" id="aexp">
+                    </div>
+                    <div class="form-group">
+                        <label for="hos">Carga Horaria (# Horas semanales):</label>
+                        <select id="hos" required>
+                            <option value="">Seleccione...</option>
+                            <option>20</option>
+                            <option>30</option>
+                            <option>40</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grado">Grado / Curso</label>
+                        <select id="grado" required>
+                            <option value="">Seleccione...</option>
+                            <option>5to</option>
+                            <option>6to</option>
+                            <option>6to</option>
+                            <option>7mo</option>
+                            <option>8vo</option>
+                            <option>9no</option>
+                            <option>10mo</option>
+                            <option>1ro (Bachillerato)</option>
+                            <option>2do (Bachillerato)</option>
+                            <option>3ro (Bachillerato)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="paral">Paralelo</label>
+                        <select id="paral" required>
+                            <option value="">Seleccione...</option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>E</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="numc">Celular</label>
+                        <input type="number" id="numc">
+                    </div>
+                    <div class="form-group">
+                        <label for="cce">Correo Electronico</label>
+                        <input type="email" id="cce">
+                    </div>
+                </div>
+                <div class="button-row">
+                    <button type="button" class="btn-primary" onclick="continuarEstudiantes()">CONTINUAR DETALLES
+                        ESTUDIANTILES</button>
+                </div>
+            </form>
+        </div>
+        <!-- Calificaciones de Estudiantes
+        <div class="form-section" id="section4" style="display:none;">
+            <div class="section-title">Calificación de Estudiantes</div>
+            <div class="student-controls">
+                <button type="button" class="btn-secondary" onclick="agregarEstudiante()">+ Agregar Estudiante</button>
+            </div>
+            <table id="tabla-estudiantes">
+                <thead>
+                    <tr>
+                        <th>Estudiante</th>
+                        <th>Calificación (0-10)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" value="Juan Pérez" class="nombre-estudiante"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="calificacion-estudiante"></td>
+                        <td><button type="button" class="btn-danger"
+                                onclick="eliminarEstudiante(this)">Eliminar</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="María Gómez" class="nombre-estudiante"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="calificacion-estudiante"></td>
+                        <td><button type="button" class="btn-danger"
+                                onclick="eliminarEstudiante(this)">Eliminar</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Carlos Sánchez" class="nombre-estudiante"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="calificacion-estudiante"></td>
+                        <td><button type="button" class="btn-danger"
+                                onclick="eliminarEstudiante(this)">Eliminar</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Ana Rodríguez" class="nombre-estudiante"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="calificacion-estudiante"></td>
+                        <td><button type="button" class="btn-danger"
+                                onclick="eliminarEstudiante(this)">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-row">
+                <button type="button" class="btn-primary" onclick="mostrarResultados()">VER RESULTADOS</button>
+            </div>
+        </div> -->
+        <!-- Calificaciones de Estudiantes -->
+        <div class="form-section" id="section4" style="display:none;">
+            <div class="section-title">Calificación de Estudiantes</div>
+            <div class="student-controls">
+                <button type="button" class="btn-secondary" onclick="agregarEstudiante()">+ Agregar Estudiante</button>
+            </div>
+            <table id="tabla-estudiantes">
+                <thead>
+                    <tr>
+                        <th>Estudiante</th>
+                        <th>Trabajos en clase</th>
+                        <th>Lecciones</th>
+                        <th>Exposición 1</th>
+                        <th>Exposición 2</th>
+                        <th>Ev. formativa</th>
+                        <th>Ev. sumativa</th>
+                        <th>Trabajos extra clase</th>
+                        <th>Promedio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" value="Juan Pérez" class="nombre-estudiante"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="trabajos-clase"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="lecciones"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="exposicion1"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="exposicion2"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="ev-formativa"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="ev-sumativa"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="trabajos-extra"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="promedio" readonly></td>
+                        <td><button type="button" class="btn-danger"
+                                onclick="eliminarEstudiante(this)">Eliminar</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="María Gómez" class="nombre-estudiante"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="trabajos-clase"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="lecciones"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="exposicion1"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="exposicion2"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="ev-formativa"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="ev-sumativa"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="trabajos-extra"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="promedio" readonly></td>
+                        <td><button type="button" class="btn-danger"
+                                onclick="eliminarEstudiante(this)">Eliminar</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Carlos Sánchez" class="nombre-estudiante"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="trabajos-clase"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="lecciones"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="exposicion1"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="exposicion2"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="ev-formativa"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="ev-sumativa"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="trabajos-extra"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="promedio" readonly></td>
+                        <td><button type="button" class="btn-danger"
+                                onclick="eliminarEstudiante(this)">Eliminar</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Ana Rodríguez" class="nombre-estudiante"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="trabajos-clase"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="lecciones"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="exposicion1"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="exposicion2"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="ev-formativa"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="ev-sumativa"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="trabajos-extra"></td>
+                        <td><input type="number" min="0" max="10" step="0.1" class="promedio" readonly></td>
+                        <td><button type="button" class="btn-danger"
+                                onclick="eliminarEstudiante(this)">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-row">
+                <button type="button" class="btn-primary" onclick="mostrarResultados()">VER RESULTADOS</button>
+            </div>
+        </div>
+
+        <!-- Resultados -->
+        <div class="form-section" id="section5" style="display:none;">
+            <div class="section-title">Resultados de la Evaluación</div>
+            <div id="resultadoEval" style="font-size:1.1rem; margin-bottom:20px;"></div>
+            <div id="estadisticasEstudiantes"
+                style="background:#f3f6fa; padding:18px; border-radius:8px; margin-bottom:20px;"></div>
+            <div class="button-row">
+                <button type="button" class="btn-primary" onclick="showTab(6)">GENERAR REPORTE</button>
+            </div>
+        </div>
+
+        <!-- Reporte -->
+        <div class="form-section" id="section6" style="display:none;">
+            <div class="section-title">Reporte Final</div>
+            <div id="reporteFinal" style="background:#f3f6fa; padding:18px; border-radius:8px; font-size:1.05rem;">
+            </div>
+            <div class="button-row">
+                <button type="button" class="btn-primary" onclick="generarPDF()">DESCARGAR PDF</button>
+                <button type="button" class="btn-secondary" onclick="nuevaEvaluacion()">NUEVA EVALUACIÓN</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
